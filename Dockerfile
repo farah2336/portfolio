@@ -14,10 +14,11 @@ RUN sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf
 # Copy all project files
 COPY . /var/www/html/
 
-# Setup Laravel environment file and generate key
+# Setup Laravel environment file, key, and SQLite database
 RUN cp .env.example .env || true
 RUN php artisan key:generate || true
+RUN mkdir -p /var/www/html/database && touch /var/www/html/database/database.sqlite
 
-# Set correct permissions for storage and cache
-RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
-RUN chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
+# Set correct permissions for storage, cache, and database
+RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache /var/www/html/database
+RUN chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache /var/www/html/database
