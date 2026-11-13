@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Farah | Full-Stack Web Developer</title>
     <!-- Tailwind CSS CDN -->
@@ -352,7 +352,7 @@
                     <div class="bg-[#F7F4EF] p-10 rounded-3xl border border-[#E6E0D5] editorial-card">
                         <!-- Success Message Alert -->
                         <div id="formResponse" class="hidden"></div>
-                    <form id="contactForm" class="max-w-xl mx-auto p-6 bg-white rounded-xl shadow-sm" novalidate>
+                    <form action="{{ route('contact.submit') }}" id="contactForm" class="max-w-xl mx-auto p-6 bg-white rounded-xl shadow-sm" novalidate>
                         @csrf <!-- Laravel CSRF Token -->
 
                         <!-- Name Field -->
@@ -552,7 +552,7 @@
                     method: "POST",
                     body: formData,
                     headers: {
-                        "X-CSRF-TOKEN": document.querySelector('input[name="_token"]').value
+                        "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute('content')
                     }
                 })
                 .then(response => {
