@@ -552,30 +552,19 @@
                     method: "POST",
                     body: formData,
                     headers: {
-                        "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-                        "Accept": "application/json"
+                        "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute('content')
                     }
                 })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        // Green success message show karega bina page reload kiye
-                        let responseDiv = document.getElementById('formResponse');
-                        responseDiv.style.display = 'block';
-                        responseDiv.className = 'p-4 mb-4 text-green-700 bg-green-100 rounded-lg text-center font-medium';
-                        responseDiv.innerHTML = data.success;
-                        
-                        // Form ko clear kar dega
-                        document.getElementById('contactForm').reset();
+                .then(response => {
+                    if (response.ok) {
+                        alert('Thank you! Your message has been sent successfully.');
+                        location.reload(); // Page reload karke success state dikhane ke liye
                     } else {
-                        // Agar koi validation error ya masla ho
-                        let responseDiv = document.getElementById('formResponse');
-                        responseDiv.style.display = 'block';
-                        responseDiv.className = 'p-4 mb-4 text-red-700 bg-red-100 rounded-lg text-center font-medium';
-                        responseDiv.innerHTML = data.message || 'Something went wrong. Please check your inputs.';
+                        alert('Something went wrong. Please check your inputs.');
                     }
                 })
                 .catch(error => console.error('Error:', error));
+            });
 
 
             
