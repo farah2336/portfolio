@@ -352,7 +352,7 @@
                     <div class="bg-[#F7F4EF] p-10 rounded-3xl border border-[#E6E0D5] editorial-card">
                         <!-- Success Message Alert -->
                         <div id="formResponse" class="hidden"></div>
-                    <form action="{{ route('contact.store') }}" id="contactForm" class="max-w-xl mx-auto p-6 bg-white rounded-xl shadow-sm" novalidate>
+                    <form action="{{ route('contact.store') }}" method="POST" id="contactForm" class="max-w-xl mx-auto p-6 bg-white rounded-xl shadow-sm" novalidate>
                         @csrf <!-- Laravel CSRF Token -->
 
                         <!-- Name Field -->
