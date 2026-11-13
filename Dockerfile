@@ -11,25 +11,19 @@ ENV APACHE_DOCUMENT_ROOT /var/www/html/public
 RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf
 RUN sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
 
-# Copy all project files
+# Copy all project files (yeh aapki local database.sqlite file ko bhi sath le jayega)
 COPY . /var/www/html/
 
 # Build frontend assets (Vite CSS/JS)
 RUN npm install && npm run build
 
-# Setup SQLite Database directory, file, and permissions
+# Setup SQLite Database directory and permissions (touch wali line yahan se hata di hai)
 RUN mkdir -p /var/www/html/database && \
-    touch /var/www/html/database/database.sqlite && \
     chown -R www-data:www-data /var/www/html/database && \
     chmod -R 775 /var/www/html/database
 
-# Setup Laravel environment file, key, and cache configuration
-RUN cp .env.example .env || true
-RUN php artisan key:generate || true
+# Setup Laravel cache configuration (key generate aur migrate hata diya hai taake purana data overwrite na ho)
 RUN php artisan config:clear || true
-
-# Run database migrations automatically during build/startup
-RUN php artisan migrate --force || true
 
 # Set correct permissions for storage, cache, and database
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache /var/www/html/database && \
