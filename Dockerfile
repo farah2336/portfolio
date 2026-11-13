@@ -17,13 +17,14 @@ COPY . /var/www/html/
 # Build frontend assets (Vite CSS/JS)
 RUN npm install && npm run build
 
-# Setup SQLite Database directory and permissions (touch wali line yahan se hata di hai)
+# Setup SQLite Database directory and permissions
 RUN mkdir -p /var/www/html/database && \
     chown -R www-data:www-data /var/www/html/database && \
     chmod -R 775 /var/www/html/database
 
-# Setup Laravel cache configuration (key generate aur migrate hata diya hai taake purana data overwrite na ho)
-RUN php artisan config:clear || true
+# Setup Laravel cache configuration and storage link
+RUN php artisan config:clear || true && \
+    php artisan storage:link || true
 
 # Set correct permissions for storage, cache, and database
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache /var/www/html/database && \
