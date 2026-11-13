@@ -3,8 +3,8 @@ FROM php:8.3-apache
 # Enable Apache Rewrite Module
 RUN a2enmod rewrite
 
-# Install required PHP extensions and SQLite system libraries
-RUN apt-get update && apt-get install -y libzip-dev unzip sqlite3 libsqlite3-dev && docker-php-ext-install pdo pdo_mysql pdo_sqlite zip
+# Install required PHP extensions, SQLite libraries, and Node.js/npm
+RUN apt-get update && apt-get install -y libzip-dev unzip sqlite3 libsqlite3-dev nodejs npm && docker-php-ext-install pdo pdo_mysql pdo_sqlite zip
 
 # Set working directory to Laravel public folder directly
 ENV APACHE_DOCUMENT_ROOT /var/www/html/public
@@ -13,6 +13,9 @@ RUN sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf
 
 # Copy all project files
 COPY . /var/www/html/
+
+# Build frontend assets (Vite CSS/JS)
+RUN npm install && npm run build
 
 # Setup SQLite Database directory, file, and permissions
 RUN mkdir -p /var/www/html/database && \
