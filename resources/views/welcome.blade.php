@@ -92,8 +92,8 @@
 
     <!-- Navigation Bar -->
     <nav class="sticky top-0 z-50 bg-[#F7F4EF]/85 backdrop-blur-md border-b border-[#E6E0D5] transition-all duration-300">
-        <div class="max-w-6xl mx-auto md:px-20 h-20 flex items-center justify-between">
-            <a href="#" class="text-xl font-bold tracking-tight text-[#1A1A1A] group">
+        <div class="max-w-6xl gap-2 px-5 mx-auto md:px-20 h-20 flex items-center justify-between">
+            <a href="#" class="text-lg sm:text-xl font-bold tracking-tight text-[#1A1A1A] group">
                 Farah  Manzoor<span class="text-[#8B5E34] inline-block group-hover:translate-x-1 transition-transform">.</span>
             </a>
 
@@ -114,7 +114,7 @@
                 <a href="#contact" class="nav-link hover:text-[#8B5E34] transition-colors py-1">Contact</a>
             </div>
 
-            <a href="#contact" class="px-5 py-2.5 text-xs font-semibold uppercase tracking-wider text-white bg-[#1A1A1A] rounded-full hover:bg-[#8B5E34] active:scale-95 transition-all shadow-md hover:shadow-lg">
+            <a href="#contact" class="px-4 sm:px-5 py-2 sm:py-2.5 shrink-0 text-xs font-semibold uppercase tracking-wider text-white bg-[#1A1A1A] rounded-full hover:bg-[#8B5E34] active:scale-95 transition-all shadow-md hover:shadow-lg">
                 Let's Talk
             </a>
         </div>
