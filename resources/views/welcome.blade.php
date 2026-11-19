@@ -121,7 +121,7 @@
     </nav>
 
     <!-- Hero / About Section -->
-    <section id="about" class="max-w-6xl mx-auto px-8 pt-16 pb-24 md:pt-24 md:pb-32">
+    <section id="about" class="max-w-6xl  overflow-x-hidden mx-auto px-8 pt-16 pb-24 md:pt-24 md:pb-32">
         <div class="grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
             
             <!-- Left Text Content -->
