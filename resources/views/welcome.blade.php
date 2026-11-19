@@ -403,15 +403,15 @@
                         </button>
                         
                         <!-- Success/Error Response Message -->
-                        <p id="formResponse" class="text-center text-sm mt-3 hidden"></p>
+                        {{-- <p id="formResponse" class="text-center text-sm mt-3 hidden"></p> --}}
                     </form>
 
-                    <script>
+                    {{-- <script>
                         document.getElementById('submitBtn').addEventListener('click', function(e) {
                             e.preventDefault();
-                            document.getElementById('contactForm').submit();
+                            document.getEz  lementById('contactForm').submit();
                         });
-                    </script>
+                    </script> --}}
                     </div>
                 </div> 
 
